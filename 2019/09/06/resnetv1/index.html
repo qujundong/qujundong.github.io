@@ -16,16 +16,16 @@
 <meta property="og:site_name" content="helloworld">
 <meta property="og:description" content="介绍提出了一种残差学习框架来减轻网络训练，这些网络比以前使用的网络更深。我们明确地将层变为学习关于层输入的残差函数，而不是学习未参考的函数。我们提供了全面的经验证据说明这些残差网络很容易优化，并可以显著增加深度来提高准确性。在ImageNet数据集上我们评估了深度高达152层的残差网络——比VGG[40]深8倍但仍具有较低的复杂度。这些残差网络的集合在ImageNet测试集上取得了3.57%的错误">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/09/06/resnetv1/block.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/06/resnetv1/34layers_net.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/06/resnetv1/resnetv1_table1.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/06/resnetv1/resnet_block2.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/06/resnetv1/resnet_result.png">
+<meta property="og:image" content="http://yoursite.com/.com//block.png">
+<meta property="og:image" content="http://yoursite.com/.com//34layers_net.png">
+<meta property="og:image" content="http://yoursite.com/.com//resnetv1_table1.png">
+<meta property="og:image" content="http://yoursite.com/.com//resnet_block2.png">
+<meta property="og:image" content="http://yoursite.com/.com//resnet_result.png">
 <meta property="og:updated_time" content="2019-09-06T08:38:04.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="resnet_v1">
 <meta name="twitter:description" content="介绍提出了一种残差学习框架来减轻网络训练，这些网络比以前使用的网络更深。我们明确地将层变为学习关于层输入的残差函数，而不是学习未参考的函数。我们提供了全面的经验证据说明这些残差网络很容易优化，并可以显著增加深度来提高准确性。在ImageNet数据集上我们评估了深度高达152层的残差网络——比VGG[40]深8倍但仍具有较低的复杂度。这些残差网络的集合在ImageNet测试集上取得了3.57%的错误">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/06/resnetv1/block.png">
+<meta name="twitter:image" content="http://yoursite.com/.com//block.png">
   
     <link rel="alternative" href="/atom.xml" title="helloworld" type="application/atom+xml">
   
@@ -185,17 +185,17 @@
 <a id="more"></a>
 <p><font color="red"> 更深的神经网络更难训练。提出了一种残差学习框架来减轻网络训练，说明这些残差网络很容易优化，并可以显著增加深度来提高准确性。比VGG深8倍但仍具有较低的复杂度。</font></p>
 <p>由以往的经验可知，当网络层数越大，网络越深，深度学习到的特征表达的语义更精确，但是由于<strong>网络过深引起的梯度消失/爆炸</strong>问题，使得网络不能过深，本文提出了残差网络的概念，成功解决这一问题，使得很深的网络能够通过反向传播，梯度下降（SGD）收敛。<br>，我们通过引入深度残差学习框架解决了退化问题。我们明确地让这些层拟合残差映射，而不是希望每几个堆叠的层直接拟合期望的基础映射。形式上，将期望的基础映射表示为H(x)，我们将堆叠的非线性层拟合另一个映射F(x):=H(x)−x。原始的映射重写为F(x)+x。我们假设残差映射比原始的、未参考的映射更容易优化。在极端情况下，如果一个恒等映射是最优的，那么将残差置为零比通过一堆非线性层来拟合恒等映射更容易。</p>
-<p>##结构<br><img src="block.png" alt="图1"><br>如上图显示，是一个残差构建块的基本结构<br><strong>快捷横等映射公式</strong><br>如果输入层和本残差单元的最后一层维度相同：<br>公式（1）：<br>$$y = f(X,W) + X$$</p>
+<p>##结构<br><img src="/.com//block.png" alt="图1"><br>如上图显示，是一个残差构建块的基本结构<br><strong>快捷横等映射公式</strong><br>如果输入层和本残差单元的最后一层维度相同：<br>公式（1）：<br>$$y = f(X,W) + X$$</p>
 <p>如果输入层和本残差单元的最后一层维度不同：<br>公式（2）：<br>$$y = f(X,W) + W_s * X$$</p>
 <p>我们来看一个简单的网络：</p>
-<p><img src="34layers_net.png" alt="34layer"></p>
+<p><img src="/.com//34layers_net.png" alt="34layer"></p>
 <p>如上图中，实心曲线代表了公式（1），虚心曲线公式（2）</p>
 <p><strong>卷积层主要有3×3的滤波器，并遵循两个简单的设计规则：（i）对于相同的输出特征图尺寸，层具有相同数量的滤波器；（ii）如果特征图尺寸减半，则滤波器数量加倍，以便保持每层的时间复杂度。我们通过步长为2的卷积层直接执行下采样。网络以全局平均池化层和具有softmax的1000维全连接层结束。图3（中间）的加权层总数为34。</strong></p>
-<p><img src="resnetv1_table1.png" alt="table1"></p>
+<p><img src="/.com//resnetv1_table1.png" alt="table1"></p>
 <p>如上表，resnetv1的结构表，简单网络的基准主要受到VGG网络的哲学启发，但是模型与VGG网络相比，有更少的滤波器和更低的复杂度，注意当网络的输入和输出维度不一致时的处理方式。【恒等快捷连接（输入输出维度一致时），快捷连接（额外填充零输入以增加维度，针对的情况是输入输出维度不同），投影快捷连接用于匹配维度（由1×1卷积完成，针对的情况是输入输出维度不同）】</p>
-<p><img src="resnet_block2.png" alt="ss"></p>
+<p><img src="/.com//resnet_block2.png" alt="ss"></p>
 <p><strong>结合上表和上图可以发现，简单的resnet_18,resnet_34，只是用3x3卷积核，一个residual block是{3x3,3x3}而，resnet_50,resnet_101,resnet_152,所用的一个模块的组合是{1x1,3x3,1x1},我们对比一下二者的参数量。假设现在输入的input是（56,56,64），第一个residual block 的参数量是<br>$$(3<em>3</em>64)<em>64+(3</em>3<em>64)</em>64=73728=(18<em>64)</em>64$$<br>第二个参数量计算：<br>$$(1<em>1</em>64)<em>64+(3</em>3<em>64)</em>64+(1<em>1</em>64)<em>256=(14</em>64)*64$$<br>后者的参数量比前者还少，而且深度还比前者深，提取的特征更彻底，所以即使resnet网络很深，但参数量并没有增加的特别多，就是因为是用来bottle neck结构后者的参数量比前者还少，而且深度还比前者深，提取的特征更彻底，所以即使resnet网络很深，但参数量并没有增加的特别多，就是因为是用来bottle neck结构,这就解决了另一个问题，VGG比resnet浅很多，二者参数却相当？ 因为resnet使用了bottleneck，并且省略了全连接层！</strong><br>我们通过使用更多的3层瓶颈块来构建101层和152层ResNets（表1）。值得注意的是，尽管深度显著增加，但152层ResNet（113亿FLOP）仍然比VGG-16/19网络（153/196亿FLOP）具有更低的复杂度。</p>
-<p><img src="resnet_result.png" alt="resnet_result"><br>上图是试验结果</p>
+<p><img src="/.com//resnet_result.png" alt="resnet_result"><br>上图是试验结果</p>
 <p><strong>恒等和投影快捷连接</strong>我们已经表明没有参数，恒等快捷连接有助于训练。接下来我们调查投影快捷连接（方程2）。在表3中我们比较了三个选项：(A) 零填充快捷连接用来增加维度，所有的快捷连接是没有参数的（与表2和图4右相同）；(B)投影快捷连接用来增加维度，其它的快捷连接是恒等的；（C）所有的快捷连接都是投影。</p>
 <h2 id="Resnet-v1源码解析"><a href="#Resnet-v1源码解析" class="headerlink" title="Resnet v1源码解析"></a>Resnet v1源码解析</h2><p>代码链接：<a href="https://github.com/tensorflow/models/tree/master/research/slim/nets" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research/slim/nets</a></p>
 <p>现分析一下要用到的工具函数，封装在resnet_utils.py文件中</p>
