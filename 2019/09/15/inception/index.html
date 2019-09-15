@@ -16,8 +16,8 @@
 <meta property="og:site_name" content="helloworld">
 <meta property="og:description" content="[TOC] 1 inception v1nception V1是来源于《Going deeper with convolutions》，论文主要介绍了，如何在有限的计算资源内，进一步提升网络的性能。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v1.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v1_b.png">
+<meta property="og:image" content="http://yoursite.com/.com//inception_v1.png">
+<meta property="og:image" content="http://yoursite.com/.com//inception_v1_b.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v1_net.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v1_4a.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v1_4d.png">
@@ -31,11 +31,11 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v3_net.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v4_net1.jpeg">
 <meta property="og:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_resnet.png">
-<meta property="og:updated_time" content="2019-09-15T01:13:38.458Z">
+<meta property="og:updated_time" content="2019-09-15T01:31:48.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="inception 系列网络">
 <meta name="twitter:description" content="[TOC] 1 inception v1nception V1是来源于《Going deeper with convolutions》，论文主要介绍了，如何在有限的计算资源内，进一步提升网络的性能。">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/15/inception/inception/images/inception_v1.png">
+<meta name="twitter:image" content="http://yoursite.com/.com//inception_v1.png">
   
     <link rel="alternative" href="/atom.xml" title="helloworld" type="application/atom+xml">
   
@@ -184,7 +184,7 @@
 
         
         <a href="/2019/09/15/inception/" class="archive-article-date">
-  	<time datetime="2019-09-15T01:13:38.458Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+  	<time datetime="2019-09-15T01:31:48.511Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
@@ -199,13 +199,13 @@
 <p>　　b) 均匀地增加网络的大小，会导致计算量的加大。</p>
 <p>因此，解决上述不足的方法是引入稀疏特性和将全连接层转换成稀疏连接。这个思路的缘由来自于两方面：1）生物的神经系统连接是稀疏的；2）有文献指出：如果数据集的概率分布能够被大型且非常稀疏的DNN网络所描述的话，那么通过分析前面层的激活值的相关统计特性和将输出高度相关的神经元进行聚类，便可逐层构建出最优的网络拓扑结构。说明臃肿的网络可以被不失性能地简化。</p>
 <p>但是，现在的计算框架对非均匀的稀疏数据进行计算是非常低效的，主要是因为查找和缓存的开销。因此，作者提出了一个想法，既能保持滤波器级别的稀疏特性，又能充分密集矩阵的高计算性能。有大量文献指出，将稀疏矩阵聚类成相对密集的子矩阵，能提高计算性能。根据此想法，提出了Inception结构。</p>
-<h3 id="1-2-inception-v1-结构"><a href="#1-2-inception-v1-结构" class="headerlink" title="1.2 inception v1 结构"></a>1.2 inception v1 结构</h3><p><img src="inception/images/inception_v1.png" alt="inception_v1"><br>对于上图中的（a）做出几点解释：</p>
+<h3 id="1-2-inception-v1-结构"><a href="#1-2-inception-v1-结构" class="headerlink" title="1.2 inception v1 结构"></a>1.2 inception v1 结构</h3><p><img src="/.com//inception_v1.png" alt="inception_v1"><br>对于上图中的（a）做出几点解释：</p>
 <p>　　a）采用不同大小的卷积核意味着不同大小的感受野，最后拼接意味着不同尺度特征的融合；</p>
 <p>　　b）之所以卷积核大小采用1、3和5，主要是为了方便对齐；</p>
 <p>　　c）文章说很多地方都表明pooling挺有效，所以Inception里面也嵌入了；</p>
 <p>　　d）网络越到后面，特征越抽象，而且每个特征所涉及的感受野也更大了，因此随着层数的增加，3x3和5x5卷积的比例也要增加。</p>
 <p>但是，使用5x5的卷积核仍然会带来巨大的计算量。 为此，文章借鉴NIN，采用1x1卷积核来进行降维，如图中（b）所示。</p>
-<p><img src="inception/images/inception_v1_b.png" alt="inception_v1_b"></p>
+<p><img src="/.com//inception_v1_b.png" alt="inception_v1_b"></p>
 <p><strong>例如：上一层的输出为100x100x128，经过具有256个输出的5x5卷积层之后(stride=1，pad=2)，输出数据的大小为100x100x256。其中，卷积层的参数为5x5x128x256。假如上一层输出先经过具有32个输出的1x1卷积层，再经过具有256个输出的5x5卷积层，那么最终的输出数据的大小仍为100x100x256，但卷积参数量已经减少为1x1x128x32 + 5x5x32x256，大约减少了4倍。</strong></p>
 <p>下面看一下整个网络的结构和代码：</p>
 <p><img src="inception/images/inception_v1_net.png" alt="inception_v1_net"></p>
@@ -361,18 +361,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/15/resnetv1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          resnet_v1
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/14/tensorflow/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">resnet_v1</div>
+    <a href="/2019/09/15/resnet/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">resnet</div>
       <i class="icon-circle-right"></i>
     </a>
   
